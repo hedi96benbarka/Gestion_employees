@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container my-2">
+		<h1 align="center" style="color: red">Liste des comptes</h1>
+		<a style="backround: green" class="btn btn-primary btn-sm mb-3"
+			th:href="@{/compte/showNewCompteForm}"> ajouter compte </a>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><center>
+							Numero
+							<center /></th>
+					<th><center>
+							Compte rib
+							<center /></th>
+					<th><center>
+							Nom de Client
+							<center /></th>
+					<th><center>
+							Solde
+							<center /></th>
+					<th><center>
+							Actions
+							<center /></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:id="${compte.rib}"th:each="compte,iterStat : ${comptes}">
+					<td><center>
+							<span th:text="${iterStat.count}">1</span>
+						</center></td>
+					<td><center>
+							<span th:text="${compte.rib}"></span>
+						</center></td>
+					<td>
+						<center>
+							<span th:text="${compte.solde}"></span>
+						</center>
+					</td>
+					<td>
+						<center>
+							<span th:text="${compte.client}"></span>
+						</center>
+					</td>
+					<td><center>
+							<a th:href="@{/compte/showFormForUpdate/{id}/(id=${compte.rib})}" class="btn btn-primary">Update</a> <a th:href="@{/compte/deleteCompte/{id}(id=${compte.rib})}" class="btn btn-danger">Delete</a>
+							<a  th:href="|javascript:deleteCompte(${compte.rib})|" class="btn btn-warning">Delete with ajax</a>
+						</center></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:switch="${message}">
+		<div th:case="'Success'" class="alert alert-success">
+			<strong>Success!</strong> insertion avec succees
+		</div>
+		<div th:case="'Failed'" class="alert alert-danger">
+			<strong>Failure!</strong> echec d'insertion
+		</div>
+	</div>
+	
+		<div th:switch="${message2}">
+		<div th:case="'Success'" class="alert alert-success">
+			<strong>Success!</strong> modification avec succee
+		</div>
+		<div th:case="'Failed'" class="alert alert-danger">
+			<strong>Failure!</strong> echec de modification
+		</div>
+	</div>
+	
+	<div th:switch="${message3}">
+		<div th:case="'Success'" class="alert alert-success">
+			<strong>Success!</strong> suppression  avec succee
+		</div>
+		<div th:case="'Failed'" class="alert alert-danger">
+			<strong>Failure!</strong> echec de supprision
+		</div>
+	</div>
+
+<script>
+document.title="Gestion des comptes";
+/*function verifier_donner()
+{
+var date_debut=document.getElementById("date_deb").value;
+var date_fin=document.getElementById("date_fin").value;
+console.log(date_debut);
+console.log(date_fin);
+if(date_debut.length==0)
+	{
+	alert("date debut vide");
+	}
+else if(date_fin.length==0)
+	{
+	alert("date fin vide");
+	document.getElementById("date_fin").focus();
+	}
+else
+	{
+	
+document.write("<select>");
+for(var i=date_debut;i<=date_fin;i++)
+	{
+	document.write("<option value="+i+">"+i+"</option>");
+	}
+document.write("</select>");
+	}*/
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../js/jquery.min.js" ></script>
+<script src="../js/compte.js" ></script>
+<script src="../js/sweetalert.min.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Gestion de Compte</h1>
+		<hr>
+		<h2>Ajouter Compte</h2>
+
+		<form action="#" th:action="@{/compte/save}" th:object="${compte}"
+			method="POST">
+			<input type="text" th:field="*{client}" id="client"
+				placeholder="nom de client" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{solde}" id="solde" placeholder="Solde"
+				class="form-control mb-4 col-4">
+
+
+			<button onclick="verifier_donner()" type="submit"
+				class="btn btn-info col-2">Add Compte</button>
+		</form>
+
+
+		<a th:href="@{/compte/all}"> retour</a>
+	</div>
+	<script>
+		function verifier_donner() {
+			var client = document.getElementById("client").value;
+			var solde = document.getElementById("solde").value;
+			if (client.length == 0) {
+				alert('saisir le nom de client');
+				document.getElementById("client").focus();
+			}
+			else if(solde<=0)
+				{
+				alert('le solde de client doit etre positive');
+				document.getElementById("client").focus();
+				
+				}
+		}
+	</script>
+</body>
+</html>

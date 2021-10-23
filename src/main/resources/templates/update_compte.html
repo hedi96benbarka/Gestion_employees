@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Compte</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<hr>
+		<h2>Modification compte</h2>
+
+		<form action="#"  th:action="@{/compte/modifier}"  th:object="${c}"
+			method="POST">
+			
+			<input type="hidden"  name="rib" th:field="*{rib}" readonly/>
+			
+			<input type="text"   name="client" th:field="*{client}" class="form-control mb-4 col-4">
+				
+				<input type="text"   name="solde"  th:field="*{solde}" class="form-control mb-4 col-4">
+				
+				
+				<button type="submit" class="btn btn-info col-2"> Update compte</button>
+		</form>
+		
+		<hr>
+		
+
+	</div>
+</body>
+</html>
